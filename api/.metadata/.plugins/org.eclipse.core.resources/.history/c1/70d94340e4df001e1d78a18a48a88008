@@ -1,0 +1,5 @@
+package com.examen.api.entity;
+
+public class user {
+
+}

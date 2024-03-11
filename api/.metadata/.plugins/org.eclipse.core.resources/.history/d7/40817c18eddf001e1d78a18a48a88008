@@ -1,0 +1,46 @@
+package com.examen.api.services;
+
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.examen.api.entity.User;
+import com.examen.api.interfaceService.IUserService;
+
+@Service
+public class UserServiceImpl implements IUserService{
+	@Autowired
+	private IUserService userDAO;
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<User> findAll(){
+		return (List<User>)userDAO.findAll();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<User> findByNombre(String nombre) {
+		return userDAO.findByNombre(nombre);
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public User findById(Long id) {
+		return userDAO.findById(id);
+	}
+	
+	@Override
+	public User save(User conductor) {
+		return userDAO.save(conductor);
+	}
+	
+	@Override
+    public void deleteUser(Long id) {
+		userDAO.deleteUser(id);
+    }
+}
